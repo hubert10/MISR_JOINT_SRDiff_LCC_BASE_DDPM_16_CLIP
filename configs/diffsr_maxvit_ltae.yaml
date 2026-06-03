@@ -10,9 +10,9 @@ hidden_size: 64
 rrdb_num_feat: 64
 
 # train and test
-batch_size: 10
+batch_size: 8
 max_updates: 400000
-eval_batch_size: 10
+eval_batch_size: 8
 test_batch_size: 1
 val_check_interval: 400000
 save_ckpt_interval: 25000
