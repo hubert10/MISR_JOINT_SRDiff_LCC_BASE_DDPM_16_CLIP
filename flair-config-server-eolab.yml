@@ -95,9 +95,9 @@ gpus_per_node: 1
 num_nodes: 1
 strategy: auto # ddp # ddp if multi-gpu
 
-cond_net_ckpt: "/bigwork/nhgnkany/pretrain_weights/LCC_SITS_MaxViT_UPerNet_16/checkpoints/last.ckpt"
-version: "/bigwork/nhgnkany/pretrain_weights/models--laion--CLIP-ViT-H-14-laion2B-s32B-b79K/snapshots/1c2b8495b28150b8a4922ee1c8edee224c284c0c/open_clip_pytorch_model.bin" # "laion2b_s32b_b79k",
-diff_sat_weights: "/bigwork/nhgnkany/pretrain_weights/finetune_sd21_sn-satlas-fmow_snr5_md7norm_bs64"
+cond_net_ckpt: "/my_data/pretrain_weights/LCC_SITS_MaxViT_UPerNet_16/checkpoints/last.ckpt"
+version: "/my_data/pretrain_weights/models--laion--CLIP-ViT-H-14-laion2B-s32B-b79K/snapshots/1c2b8495b28150b8a4922ee1c8edee224c284c0c/open_clip_pytorch_model.bin" # "laion2b_s32b_b79k",
+diff_sat_weights: "/my_data/pretrain_weights/finetune_sd21_sn-satlas-fmow_snr5_md7norm_bs64"
 
 # Training and evaluation
 mode: "train" # ["train", "eval" ]
