@@ -1,0 +1,124 @@
+data:
+    path_aerial_train: "FLAIR_2_toy_dataset/flair_aerial_test/" # ./flair_aerial_train/
+    path_sen_train: "FLAIR_2_toy_dataset/flair_sen_test/"  # ./flair_sen_train/
+    path_labels_train: "FLAIR_2_toy_dataset/flair_labels_test/" # ./flair_labels_train/
+ 
+    path_aerial_test: "FLAIR_2_toy_dataset/flair_aerial_test/" # ./flair_2_aerial_test/
+    path_sen_test: "FLAIR_2_toy_dataset/flair_sen_test/" # ./flair_2_sen_test/
+    path_labels_test: "FLAIR_2_toy_dataset/flair_labels_test/" # ./flair_labels_train/
+
+    path_sp_centroids: "FLAIR_2_toy_dataset/flair_centroids_sp_to_patch.json" # ./flair_2_centroids_sp_to_patch.json
+    path_metadata_aerial: "FLAIR_2_toy_dataset/flair_metadata_aerial.json" # ./flair_use_metadata.json
+
+outputs:
+    out_folder: "results/"
+    out_model_name: "misr-s2-aer-seg"
+
+
+# The latter strings shouldn't start with a slash. 
+# If they start with a slash, then they're considered an 
+# "absolute path" and everything before them is discarded
+
+# Fusion
+sat_patch_size: 16  # in [8, 112] and multiple of 8 
+sr_patch_size: 64
+
+loss_weights_aer_sat: [0.7, 0.3]
+loss_aux_sat_weight: 1.0
+loss_main_sat_weight: 1.0
+
+# MTD and AUG
+use_metadata: True
+geo_enc_size: 32
+use_augmentation: True
+sen_temp_reduc: "mean" # ["mean", "median"]
+val_percent: 0.9
+# Sentinel Time Series filtering
+filter_clouds: True
+average_month: True
+
+# Weighting
+weights_aer_sat:
+                building              : 0.1
+                pervious surface      : 0.1
+                impervious surface    : 0.1
+                bare soil             : 0.1
+                water                 : 0.1
+                coniferous            : 0.1
+                deciduous             : 0.1
+                brushwood             : 0.1
+                vineyard              : 0.1
+                herbaceous vegetation : 0.1
+                agricutural land      : 0.1
+                plowed land           : 0.1
+                other                 : 0.1
+
+# Inputs
+num_classes: 13
+num_channels_aer: 5 
+num_channels_sat: 4 
+nbts: 3 # 1: 12 images, 2: 6 images, 3: 4 images, 4: 3 images, 6: 2 images
+sr_scale: 6.25 # 6.25 for 20 cm GSD to 1.6 m GSD, 10 for 20 cm GSD to 2 m GSD
+sat_reflectance_train: 2_000 
+sat_reflectance_infer: 2_000 
+
+ref_year: 2021 # defined for whole dataset
+ref_date: 05-15 # defined for whole dataset
+pad_value: 0
+padding_mode: reflect
+
+# sits Model
+out_conv: [32, 13]
+str_conv_k: 4
+str_conv_s: 2
+str_conv_p: 1
+agg_mode: att_group
+encoder_norm: group
+n_head: 16
+d_model: 256
+d_k: 4
+ref_year: 2021 # defined for whole dataset
+ref_date: 05-15 # defined for whole dataset
+pad_value: 0
+padding_mode: reflect
+
+# Swin-Conv Model
+img_size: 64
+decoder_channels: 256 
+dropout: 0.2
+window_size: 8 
+weight_decay: 0.00025 # 2.5e-4
+backbone_lr: 0.00006 # 6e-5
+backbone_weight_decay: 0.00025 # 2.5e-4
+
+embed_dim: 64 # 96 transformer latent vector size
+uper_head_dim: 512  # decoder internal dimension - default=512
+block_channels: [128, 256, 512]  # [64, 128, 256, 512]
+block_layers: [2, 2, 5] 
+depths: [2, 2, 6] # , 2] # SwinTransformer Depth. No. of transformer layers per SwinTransformerBlock. Should be min. 2 for 1)Window-MSA and 2)ShiftedWindow-MSA!
+num_heads: [2, 4, 8] # , 16] # [3, 6, 12, 24] # No. of parallel MSA-Heads per SwinTransformerBlock
+mlp_ratio: 4.0
+pool_scales: (1, 2, 3) #, 5) # (1, 2, 3, 6) the reason here is that our images are too small 40X40
+# Spatial Feature Extraction
+spa_temp_att: "separate-st" # ["full-st", "only-temp", "separate-st"] # "full-st", ---> full-spa-temp-att, "temp" ---> only-temp, "separate-st"
+conv_spa_att: True # IF True use conv att instead of self-attention
+sits_net_ckpt:
+# Computation
+accelerator: gpu
+gpus_per_node: 1
+num_nodes: 1
+strategy: auto # ddp # ddp if multi-gpu
+# The "auto" option recognizes the machine you are on, and selects the appropriate Accelerator.
+
+cond_net_ckpt: "D:\\kanyamahanga\\Datasets\\pretrain_weights\\LCC_SITS_MaxViT_UPerNet_16\\checkpoints\\last.ckpt"
+version:  "laion2b_s32b_b79k"
+
+diff_sat_weights: "D:\\kanyamahanga\\Datasets\\pretrain_weights\\finetune_sd21_sn-satlas-fmow_snr5_md7norm_bs64"
+
+# Training and evaluation
+mode: "train" # ["train", "eval" ]
+norm_type: "scale" # ["scale", "min-max", "mean-std"]
+sits_temp_merging: "mean" # ["mean", "sum"]
+
+resume: False
+debug: True

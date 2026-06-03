@@ -1,0 +1,8 @@
+
+
+chmod 400 /home/kanyamahanga/.ssh/Hubert2.pem
+
+ssh -v -i /home/kanyamahanga/.ssh/Hubert2.pem eouser@74.63.0.58
+
+
+scp -i /home/kanyamahanga/.ssh/Hubert-EoLab.pem eouser@74.63.0.58:/home/eouser/exp_2026/Results/MISR_JOINT_SRDiff_LCC_BASE_DDPM_16_CLIP_EOLAB/results/checkpoints/misr/srdiff_highresnet_ltae_ckpt/model_ckpt_steps_150000.ckpt ./

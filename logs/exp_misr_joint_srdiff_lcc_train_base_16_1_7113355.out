@@ -1,0 +1,156 @@
+/software/NHGN20600/nhgnkany/flair_venv/bin/python
+USED O.S: Linux
+| Unknow hparams:  []
+[;33;maccelerator[0m: gpu, [;33;maccumulate_grad_batches[0m: 1, [;33;mamp[0m: False, [;33;maux_l1_loss[0m: True, [;33;maux_percep_loss[0m: False, 
+[;33;maux_ssim_loss[0m: False, [;33;maverage_month[0m: True, [;33;mbackbone_lr[0m: 6e-05, [;33;mbackbone_weight_decay[0m: 0.00025, [;33;mbase_config[0m: ['./diffsr_base.yaml', './df2k4x.yaml'], 
+[;33;mbatch_size[0m: 5, [;33;mbeta_end[0m: 0.02, [;33;mbeta_s[0m: 0.008, [;33;mbeta_schedule[0m: cosine, [;33;mbinary_data_dir[0m: data/binary/df2k4x, 
+[;33;mblock_channels[0m: [128, 256, 512], [;33;mblock_layers[0m: [2, 2, 5], [;33;mcheck_val_every_n_epoch[0m: 10, [;33;mclip_grad_norm[0m: 10, [;33;mclip_input[0m: True, 
+[;33;mcond_net_ckpt[0m: /bigwork/nhgnkany/pretrain_weights/LCC_SITS_MaxViT_UPerNet_16/checkpoints/last.ckpt, [;33;mconfig_file[0m: flair-config-server.yml, [;33;mconv_spa_att[0m: True, [;33;mcrop_size[0m: 320, [;33;md_model[0m: 256, 
+[;33;mdata[0m: {'path_aerial_train': 'FLAIR/flair_aerial_train/', 'path_sen_train': 'FLAIR/flair_sen_train/', 'path_labels_train': 'FLAIR/flair_labels_train/', 'path_aerial_test': 'FLAIR/flair_aerial_test/', 'path_sen_test': 'FLAIR/flair_sen_test/', 'path_labels_test': 'FLAIR/flair_labels_test/', 'path_sp_centroids': 'FLAIR/flair_centroids_sp_to_patch.json', 'path_metadata_aerial': 'FLAIR/flair_aerial_metadata.json'}, [;33;mdata_augmentation[0m: False, [;33;mdata_interp[0m: bicubic, [;33;mdebug[0m: False, [;33;mdecay_steps[0m: 100000, 
+[;33;mdecoder_channels[0m: 256, [;33;mdenoise_net[0m: unet, [;33;mdepths[0m: [2, 2, 6], [;33;mdropout[0m: 0.2, [;33;mds_workers[0m: 1, 
+[;33;membed_dim[0m: 64, [;33;mendless[0m: False, [;33;meval_batch_size[0m: 5, [;33;mexp_name[0m: srdiff_maxvit_ltae_ckpt, [;33;mfilter_clouds[0m: True, 
+[;33;mfix_cond_net_parms[0m: True, [;33;mgen_dir_name[0m: , [;33;mgn_groups[0m: 0, [;33;mgpus_per_node[0m: 1, [;33;mgrad_px_loss_weight[0m: 0.5, 
+[;33;mgray_value_px_loss_weight[0m: 1.0, [;33;mhidden_size[0m: 64, [;33;minfer[0m: False, [;33;mload_ckpt[0m: , [;33;mloss_aux_sat_weight[0m: 1.0, 
+[;33;mloss_main_sat_weight[0m: 1.0, [;33;mloss_type[0m: l1, [;33;mloss_weights_aer_sat[0m: [0.7, 0.3], [;33;mlr[0m: 0.0001, [;33;mlr_seg[0m: 0.0001, 
+[;33;mmain_loss_weight[0m: 1.0, [;33;mmax_epochs[0m: 400, [;33;mmax_s2_images[0m: 8, [;33;mmax_updates[0m: 400000, [;33;mmisr[0m: True, 
+[;33;mmisr_ref_image[0m: closest, [;33;mmlp_ratio[0m: 4.0, [;33;mmode[0m: train, [;33;mn_head[0m: 16, [;33;mnbts[0m: 3, 
+[;33;mnorm_type[0m: scale, [;33;mnum_channels_aer[0m: 5, [;33;mnum_channels_sat[0m: 4, [;33;mnum_ckpt_keep[0m: 100, [;33;mnum_classes[0m: 13, 
+[;33;mnum_heads[0m: [2, 4, 8], [;33;mnum_nodes[0m: 1, [;33;mnum_sanity_val_steps[0m: 4, [;33;mnum_workers[0m: 8, [;33;moutputs[0m: {'out_folder': '/bigwork/nhgnkany/Results/MISR_JOINT_SRDiff_LCC_BASE_DDPM_16_CLIP/', 'out_model_name': 'misr-s2-aer-seg'}, 
+[;33;mpad_value[0m: 0, [;33;mpadding_mode[0m: reflect, [;33;mpatch_size[0m: 160, [;33;mpool_scales[0m: (1, 2, 3), [;33;mpred_noise[0m: True, 
+[;33;mprint_arch[0m: False, [;33;mprint_nan_grads[0m: False, [;33;mpx_loss_weight[0m: 1.0, [;33;mref_date[0m: 05-15, [;33;mref_year[0m: 2021, 
+[;33;mres[0m: True, [;33;mres_rescale[0m: 2.0, [;33;mresume[0m: False, [;33;mresume_from_checkpoint[0m: 0, [;33;mrrdb_num_block[0m: 17, 
+[;33;mrrdb_num_feat[0m: 64, [;33;msat_patch_size[0m: 16, [;33;msat_reflectance_infer[0m: 2000, [;33;msat_reflectance_train[0m: 2000, [;33;msave_best[0m: True, 
+[;33;msave_ckpt_interval[0m: 25000, [;33;msave_codes[0m: ['configs', 'models', 'tasks', 'utils'], [;33;msave_intermediate[0m: False, [;33;mseed[0m: 1234, [;33;msen_temp_reduc[0m: mean, 
+[;33;mshow_training_process[0m: False, [;33;msits_temp_merging[0m: mean, [;33;mspa_temp_att[0m: separate-st, [;33;msr_patch_size[0m: 64, [;33;msr_scale[0m: 6.25, 
+[;33;mstrategy[0m: auto, [;33;mstyle_interp[0m: False, [;33;mtb_log_interval[0m: 100, [;33;mtemp_grad_mag_loss_weight[0m: 0.2, [;33;mtest_batch_size[0m: 1, 
+[;33;mtest_crop_size[0m: [2040, 2040], [;33;mtest_diff[0m: True, [;33;mtest_input_dir[0m: , [;33;mtest_save_png[0m: True, [;33;mtest_thresh_size[0m: 0, 
+[;33;mthresh_size[0m: 160, [;33;mtimesteps[0m: 500, [;33;mtrain_diffsr[0m: True, [;33;mtrainer_cls[0m: tasks.srdiff.SRDiffTrainer, [;33;munet_dim_mults[0m: 1|2|4|8, 
+[;33;mup_input[0m: False, [;33;muper_head_dim[0m: 512, [;33;muse_attn[0m: False, [;33;muse_augmentation[0m: True, [;33;muse_aux_loss[0m: True, 
+[;33;muse_highresnet_ltae[0m: True, [;33;muse_metadata[0m: True, [;33;muse_rrdb_ltae[0m: False, [;33;muse_wn[0m: False, [;33;mval_check_interval[0m: 400000, 
+[;33;mval_percent[0m: 0.9, [;33;mvalid_monitor_key[0m: val_loss, [;33;mvalid_monitor_mode[0m: min, [;33;mvalid_steps[0m: 4, [;33;mvalidate[0m: False, 
+[;33;mweight_decay[0m: 0.00025, [;33;mweight_init[0m: False, [;33;mweights_aer_sat[0m: {'building': 0.1, 'pervious surface': 0.51101696, 'impervious surface': 0.40512797, 'bare soil': 0.65678436, 'water': 0.60888594, 'coniferous': 0.73641235, 'deciduous': 0.385543, 'brushwood': 0.5410278, 'vineyard': 0.73730785, 'herbaceous vegetation': 0.34869152, 'agricutural land': 0.43978617, 'plowed land': 0.6750025, 'other': 1}, [;33;mwindow_size[0m: 8, [;33;mwork_dir[0m: /bigwork/nhgnkany/Results/MISR_JOINT_SRDiff_LCC_BASE_DDPM_16_CLIP/checkpoints/srdiff_maxvit_ltae_ckpt, 
+Setting up [LPIPS] perceptual loss: trunk [alex], v[0.1], spatial [off]
+Loading model from: /software/NHGN20600/nhgnkany/flair_venv/lib/python3.11/site-packages/lpips/weights/v0.1/alex.pth
+
++================================================================================+
+Model name: misr-s2-aer-seg
++================================================================================+
+[---TASKING---]
+- aerial metadata          :    True
+- use augmentation         :    True
+
++--------------------------------------------------------------------------------+
+[---DATA SPLIT---]
+- train                    :    56387 samples
+- val                      :    5325 samples
+- test                     :    16050 samples
+
++--------------------------------------------------------------------------------+
+[---HYPER-PARAMETERS---]
+- nodes                    :    1
+- GPU per nodes            :    1
+- accelerator              :    gpu
+
++--------------------------------------------------------------------------------+ 
+
+🌳 Configuration Tree 
+┣━━ data
+┃   ┣━━ path_aerial_train: FLAIR/flair_aerial_train/
+┃   ┣━━ path_sen_train: FLAIR/flair_sen_train/
+┃   ┣━━ path_labels_train: FLAIR/flair_labels_train/
+┃   ┣━━ path_aerial_test: FLAIR/flair_aerial_test/
+┃   ┣━━ path_sen_test: FLAIR/flair_sen_test/
+┃   ┣━━ path_labels_test: FLAIR/flair_labels_test/
+┃   ┣━━ path_sp_centroids: FLAIR/flair_centroids_sp_to_patch.json
+┃   ┗━━ path_metadata_aerial: FLAIR/flair_aerial_metadata.json
+┣━━ outputs
+┃   ┣━━ out_folder: /bigwork/nhgnkany/Results/MISR_JOINT_SRDiff_LCC_BASE_DDPM_16_CLIP/
+┃   ┗━━ out_model_name: misr-s2-aer-seg
+┣━━ sat_patch_size: 16
+┣━━ sr_patch_size: 64
+┣━━ loss_weights_aer_sat: [0.7, 0.3]
+┣━━ loss_aux_sat_weight: 1.0
+┣━━ loss_main_sat_weight: 1.0
+┣━━ use_metadata: True
+┣━━ use_augmentation: True
+┣━━ sen_temp_reduc: mean
+┣━━ filter_clouds: True
+┣━━ average_month: True
+┣━━ weights_aer_sat
+┃   ┣━━ building: 0.1
+┃   ┣━━ pervious surface: 0.51101696
+┃   ┣━━ impervious surface: 0.40512797
+┃   ┣━━ bare soil: 0.65678436
+┃   ┣━━ water: 0.60888594
+┃   ┣━━ coniferous: 0.73641235
+┃   ┣━━ deciduous: 0.385543
+┃   ┣━━ brushwood: 0.5410278
+┃   ┣━━ vineyard: 0.73730785
+┃   ┣━━ herbaceous vegetation: 0.34869152
+┃   ┣━━ agricutural land: 0.43978617
+┃   ┣━━ plowed land: 0.6750025
+┃   ┗━━ other: 1
+┣━━ num_classes: 13
+┣━━ num_channels_aer: 5
+┣━━ num_channels_sat: 4
+┣━━ nbts: 3
+┣━━ sr_scale: 6.25
+┣━━ sat_reflectance_train: 2000
+┣━━ sat_reflectance_infer: 2000
+┣━━ ref_year: 2021
+┣━━ ref_date: 05-15
+┣━━ pad_value: 0
+┣━━ padding_mode: reflect
+┣━━ val_percent: 0.9
+┣━━ n_head: 16
+┣━━ d_model: 256
+┣━━ decoder_channels: 256
+┣━━ dropout: 0.2
+┣━━ window_size: 8
+┣━━ weight_decay: 0.00025
+┣━━ backbone_lr: 6e-05
+┣━━ backbone_weight_decay: 0.00025
+┣━━ embed_dim: 64
+┣━━ uper_head_dim: 512
+┣━━ block_channels: [128, 256, 512]
+┣━━ block_layers: [2, 2, 5]
+┣━━ depths: [2, 2, 6]
+┣━━ num_heads: [2, 4, 8]
+┣━━ mlp_ratio: 4.0
+┣━━ pool_scales: (1, 2, 3)
+┣━━ spa_temp_att: separate-st
+┣━━ conv_spa_att: True
+┣━━ accelerator: gpu
+┣━━ gpus_per_node: 1
+┣━━ num_nodes: 1
+┣━━ strategy: auto
+┣━━ cond_net_ckpt: 
+┃   /bigwork/nhgnkany/pretrain_weights/LCC_SITS_MaxViT_UPerNet_16/checkpoints/la
+┃   st.ckpt
+┣━━ mode: train
+┣━━ norm_type: scale
+┣━━ sits_temp_merging: mean
+┣━━ resume: False
+┗━━ debug: False
+| load 'cond model' from '/bigwork/nhgnkany/pretrain_weights/LCC_SITS_MaxViT_UPerNet_16/checkpoints/last.ckpt'.
+| load 'cond model' from '/bigwork/nhgnkany/pretrain_weights/LCC_SITS_MaxViT_UPerNet_16/checkpoints/last.ckpt'.
+
+ ------------------------------------------------------------------------------------------------------------------------------
+| Model component           | Sub-module                | Type              |    Total params |       Trainable |
+| ------------------------- | ------------------------- | ----------------- | --------------- | --------------- |
+| Conditioning              | cond_net                  | conditioning net  |      20,689,124 |      20,689,124 |
+| Denoising                 | denoise_net               | denoising net     |      28,803,716 |      28,803,716 |
+| SITS Encoder              | sr_sits_enc               | task sits encoder |      58,333,972 |      58,333,972 |
+| Aer Encoder               | aer_net_enc               | task aer encoder  |      30,274,056 |      30,274,056 |
+| Aer Decoder               | aer_net_dec               | task decoder      |      10,275,912 |      10,275,912 |
+| Fusion                    | fusion_module             | fusion module     |       4,311,555 |       4,311,555 |
+|------------------------------------------------------------------------------------------------------------------------------|
+| Total parameters                                                                152,688,335       152,688,335 |
+ ------------------------------------------------------------------------------------------------------------------------------
+
+work_dir where to load weights: /bigwork/nhgnkany/Results/MISR_JOINT_SRDiff_LCC_BASE_DDPM_16_CLIP/checkpoints/srdiff_maxvit_ltae_ckpt
+Step@275000: saving model to /bigwork/nhgnkany/Results/MISR_JOINT_SRDiff_LCC_BASE_DDPM_16_CLIP/checkpoints/srdiff_maxvit_ltae_ckpt/model_ckpt_steps_275000.ckpt
+Step@300000: saving model to /bigwork/nhgnkany/Results/MISR_JOINT_SRDiff_LCC_BASE_DDPM_16_CLIP/checkpoints/srdiff_maxvit_ltae_ckpt/model_ckpt_steps_300000.ckpt
+Step@325000: saving model to /bigwork/nhgnkany/Results/MISR_JOINT_SRDiff_LCC_BASE_DDPM_16_CLIP/checkpoints/srdiff_maxvit_ltae_ckpt/model_ckpt_steps_325000.ckpt
+Step@350000: saving model to /bigwork/nhgnkany/Results/MISR_JOINT_SRDiff_LCC_BASE_DDPM_16_CLIP/checkpoints/srdiff_maxvit_ltae_ckpt/model_ckpt_steps_350000.ckpt
+Step@375000: saving model to /bigwork/nhgnkany/Results/MISR_JOINT_SRDiff_LCC_BASE_DDPM_16_CLIP/checkpoints/srdiff_maxvit_ltae_ckpt/model_ckpt_steps_375000.ckpt

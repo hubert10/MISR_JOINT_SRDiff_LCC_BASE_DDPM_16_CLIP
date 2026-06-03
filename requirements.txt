@@ -1,0 +1,14 @@
+torch
+torchvision
+numpy
+pandas
+scikit-image
+rasterio
+matplotlib
+tqdm
+lpips
+einops
+Pillow
+seaborn
+opencv-python
+click

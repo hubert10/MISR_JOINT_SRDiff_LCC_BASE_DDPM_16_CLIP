@@ -1,0 +1,109 @@
+data:
+    path_aerial_train: "FLAIR/flair_aerial_train/" # ./flair_aerial_train/
+    path_sen_train: "FLAIR/flair_sen_train/"  # ./flair_sen_train/
+    path_labels_train: "FLAIR/flair_labels_train/" # ./flair_labels_train/
+ 
+    path_aerial_test: "FLAIR/flair_aerial_test/" # ./flair_2_aerial_test/
+    path_sen_test: "FLAIR/flair_sen_test/" # ./flair_2_sen_test/
+    path_labels_test: "FLAIR/flair_labels_test/" # ./flair_labels_train/
+
+    path_sp_centroids: "FLAIR/flair_centroids_sp_to_patch.json" # ./flair_2_centroids_sp_to_patch.json
+    path_metadata_aerial: "FLAIR/flair_aerial_metadata.json" # ./flair_use_metadata.json
+
+outputs:
+    out_folder: "/bigwork/nhgnkany/Results/MISR_JOINT_SRDiff_LCC_BASE_DDPM_16_CLIP/"
+    out_model_name: "misr-s2-aer-seg"
+
+# The latter strings shouldn't start with a slash. 
+# If they start with a slash, then they're considered an 
+# "absolute path" and everything before them is discarded
+
+# Fusion
+sat_patch_size: 16  # in [8, 112] and multiple of 8 
+sr_patch_size: 64
+
+loss_weights_aer_sat: [0.7, 0.3]
+loss_aux_sat_weight: 1.0
+loss_main_sat_weight: 1.0
+
+# MTD and AUG
+use_metadata: True
+use_augmentation: True
+sen_temp_reduc: "mean" # ["mean", "median"]
+
+# Sentinel Time Series filtering
+filter_clouds: True
+average_month: True
+
+# Weighting
+weights_aer_sat:
+                building              : 0.1
+                pervious surface      : 0.51101696
+                impervious surface    : 0.40512797
+                bare soil             : 0.65678436
+                water                 : 0.60888594
+                coniferous            : 0.73641235
+                deciduous             : 0.385543
+                brushwood             : 0.5410278
+                vineyard              : 0.73730785
+                herbaceous vegetation : 0.34869152
+                agricutural land      : 0.43978617
+                plowed land           : 0.6750025
+                other                 : 1
+
+# Inputs
+num_classes: 13
+num_channels_aer: 5 
+num_channels_sat: 4 
+nbts: 3 # 1: 12 images, 2: 6 images, 3: 4 images, 4: 3 images, 6: 2 images
+sr_scale: 6.25
+sat_reflectance_train: 2_000 
+sat_reflectance_infer: 2_000 
+
+ref_year: 2021 # defined for whole dataset
+ref_date: 05-15 # defined for whole dataset
+pad_value: 0
+padding_mode: reflect
+val_percent: 0.9
+
+# sits Model
+n_head: 16
+d_model: 256
+
+# Swin-Conv Model
+decoder_channels: 256 
+dropout: 0.2
+window_size: 8 
+weight_decay: 0.00025 # 2.5e-4
+backbone_lr: 0.00006 # 6e-5
+backbone_weight_decay: 0.00025 # 2.5e-4
+
+embed_dim: 64
+uper_head_dim: 512  # decoder internal dimension - default=512
+block_channels: [128, 256, 512]  # [64, 128, 256, 512]
+block_layers: [2, 2, 5] 
+depths: [2, 2, 6] # SwinTransformer Depth. No. of transformer layers per SwinTransformerBlock. Should be min. 2 for 1)Window-MSA and 2)ShiftedWindow-MSA!
+num_heads: [2, 4, 8] # [3, 6, 12, 24] # No. of parallel MSA-Heads per SwinTransformerBlock
+mlp_ratio: 4.0
+pool_scales: (1, 2, 3) # (1, 2, 3, 6) the reason here is that our images are too small 40X40
+# Spatial Feature Extraction
+spa_temp_att: "separate-st" # ["full-st", "only-temp", "separate-st"] # "full-st", ---> full-spa-temp-att, "temp" ---> only-temp, "separate-st"
+conv_spa_att: True # IF True use conv att instead of self-attention
+
+# Computation
+accelerator: gpu
+gpus_per_node: 1
+num_nodes: 1
+strategy: auto # ddp # ddp if multi-gpu
+
+cond_net_ckpt: "/bigwork/nhgnkany/pretrain_weights/LCC_SITS_MaxViT_UPerNet_16/checkpoints/last.ckpt"
+version: "/bigwork/nhgnkany/pretrain_weights/models--laion--CLIP-ViT-H-14-laion2B-s32B-b79K/snapshots/1c2b8495b28150b8a4922ee1c8edee224c284c0c/open_clip_pytorch_model.bin" # "laion2b_s32b_b79k",
+diff_sat_weights: "/bigwork/nhgnkany/pretrain_weights/finetune_sd21_sn-satlas-fmow_snr5_md7norm_bs64"
+
+# Training and evaluation
+mode: "train" # ["train", "eval" ]
+norm_type: "scale" # ["scale", "min-max", "mean-std"]
+sits_temp_merging: "mean" # ["mean", "sum"]
+
+resume: False
+debug: False

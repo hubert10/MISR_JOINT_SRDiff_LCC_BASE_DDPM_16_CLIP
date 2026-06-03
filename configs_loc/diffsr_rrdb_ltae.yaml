@@ -1,0 +1,31 @@
+base_config:
+  - ./diffsr_base.yaml
+  - ./df2k4x.yaml
+trainer_cls: tasks.srdiff.SRDiffTrainer
+
+# model
+unet_dim_mults: 1|2|4|8
+decay_steps: 10
+hidden_size: 64
+rrdb_num_feat: 32
+rrdb_num_block: 8
+
+# added by @hubert
+save_intermediate: false
+test_diff: true
+
+# train and test
+batch_size: 2
+max_updates: 4
+eval_batch_size: 1
+test_batch_size: 1
+train_diffsr: true
+val_check_interval: 1
+save_ckpt_interval: 2
+train_diffsr: true
+max_s2_images: 8
+use_highresnet_ltae: false
+use_rrdb_ltae: true
+misr_ref_image: closest
+misr: true
+sr_scale: 6.25

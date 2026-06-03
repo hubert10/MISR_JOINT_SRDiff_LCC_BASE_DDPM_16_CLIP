@@ -1,0 +1,41 @@
+base_config:
+  - ./config_base.yaml
+  - ./sr_base.yaml
+# model
+beta_schedule: cosine
+beta_s: 0.008
+beta_end: 0.02
+hidden_size: 64
+timesteps: 500
+res: true
+res_rescale: 2.0
+up_input: false
+use_wn: false
+gn_groups: 0
+rrdb_num_block: 17
+rrdb_num_feat: 64
+cond_net_ckpt: ''
+unet_dim_mults: 1|2|4|8
+clip_input: true
+denoise_net: unet
+use_attn: false
+aux_l1_loss: true
+aux_ssim_loss: false
+aux_percep_loss: false
+loss_type: l1
+pred_noise: true
+clip_grad_norm: 10
+weight_init: false
+
+# train and eval
+lr: 0.0001
+lr_seg: 0.0001
+decay_steps: 10
+accumulate_grad_batches: 1
+style_interp: false
+save_intermediate: false
+show_training_process: false
+print_arch: false
+
+fix_cond_net_parms: false # freeze cond_net params during denoiser training
+use_aux_loss: true # use auxiliary losses

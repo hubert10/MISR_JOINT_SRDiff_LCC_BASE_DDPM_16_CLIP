@@ -1,0 +1,56 @@
+Parameters to be investigated
+
+0. Perhaps, we need to investigate on the use Histogram Matching of aerial imagery as a 
+pre-processing to match with the corresponding Sentinel-2 imagery, while maintaining
+the high frequency compoents of the aerial imagery.
+
+https://github.com/microsoft/histmatch/blob/main/src/histmatch.py
+
+1. "res": influences how the inference noisy image is generated, this variable should be set to False
+to observe the difference as opposite to True.
+
+
+2. Introducing gradient loss in addition to L1 loss gradient-based loss functions 
+can improve diffusion models by enhancing their ability to capture fine details, 
+improving convergence, and reducing artifacts. 
+Here's how gradient-based losses can be integrated and their potential benefits:
+
+1. Why Gradient-Based Losses?
+
+Gradient-based losses focus on the spatial structure and edges in images by penalizing
+ differences in the gradients (or derivatives) of the predicted and target images. 
+ This is particularly useful for:
+
+- Preserving fine details: Gradients emphasize edges and textures, which are often lost 
+in standard pixel-wise losses like L1 or L2.
+
+- Reducing blur: Pixel-wise losses tend to produce blurry results because they average 
+over possible solutions, while gradient-based losses encourage sharper transitions.
+
+- Improving perceptual quality: Gradient losses align better with human perception, 
+which is sensitive to edges and structures.
+
+Note that L1 loss only relies on pixel-wise differences and is not capable of capturing
+fine-grained details, and other important aspects based on the content or style of the images.
+
+
+3. Why do we need to normalize the input data between [-1, 1] for Diffusion Models?
+
+Idea: the choice to use -1 to 1 has to do with the VAE, this is important
+for cases where the output is also an image (e.g., for VAE of images). If I understand correctly the 
+VAE was trained in such a way that the outputs of the encoder 
+are normally distributed with a mean of 0 and truncated to between -1 and 1
+
+In other words, for cases where the output must match the input, using [−1,1]
+ may be a better choice.
+
+4. Tips to improve the SR results:
+
+4.1.  Fast Sampliong and High sample quality
+Paper: https://arxiv.org/pdf/2309.01274
+
+5. Should we condition the denoising model on the Sat full fledged features?
+or the croppped features
+
+
+
