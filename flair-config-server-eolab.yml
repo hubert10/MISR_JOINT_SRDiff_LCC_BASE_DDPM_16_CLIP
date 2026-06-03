@@ -11,7 +11,7 @@ data:
     path_metadata_aerial: "FLAIR/flair_aerial_metadata.json" # ./flair_use_metadata.json
 
 outputs:
-    out_folder: "/my_data/Results/MISR_JOINT_SRDiff_LCC_BASE_DDPM_16_CLIP/results/"
+    out_folder: "/my_data/Results/MISR_JOINT_SRDiff_LCC_BASE_DDPM_16_CLIP/"
     out_model_name: "misr-s2-aer-seg"
 
 # The latter strings shouldn't start with a slash. 
