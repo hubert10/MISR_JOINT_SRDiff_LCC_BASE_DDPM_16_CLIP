@@ -116,7 +116,7 @@ class GaussianDiffusion(nn.Module):
             if "attn" not in name:
                 param.requires_grad = False
             else:
-                param.requires_grad = False
+                param.requires_grad = True
 
         # Setup the CLIP model - use pretrained weights
         self.cond_stage_model = FrozenOpenCLIPEmbedder(hparams)
