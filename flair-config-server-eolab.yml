@@ -81,6 +81,8 @@ backbone_weight_decay: 0.00025 # 2.5e-4
 
 embed_dim: 64
 uper_head_dim: 512  # decoder internal dimension - default=512
+block_channels: [128, 256, 512]  # [64, 128, 256, 512]
+block_layers: [2, 2, 5]  # [2, 2, 5, 2]
 depths: [2, 2, 6] # SwinTransformer Depth. No. of transformer layers per SwinTransformerBlock. Should be min. 2 for 1)Window-MSA and 2)ShiftedWindow-MSA!
 num_heads: [2, 4, 8] # [3, 6, 12, 24] # No. of parallel MSA-Heads per SwinTransformerBlock
 mlp_ratio: 4.0
